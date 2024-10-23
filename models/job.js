@@ -3,8 +3,8 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const taskSchema = new Schema({
-  title: { type: String, required: true },
-  description: { type: String, required: true },
+  title: { type: String },
+  description: { type: String },
   dueDate: { type: Date, default: Date.now },
   completed: { type: Boolean, default: false },
 },{
