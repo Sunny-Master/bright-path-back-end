@@ -17,6 +17,17 @@ async function create(req, res) {
   }
 }
 
+async function show(req, res) {
+  try {
+    const job = await Job.findById(req.params.jobId)
+    res.status(200).json(job)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
 export { 
   create,
+  show,
 }
