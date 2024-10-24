@@ -27,7 +27,22 @@ async function show(req, res) {
   }
 }
 
+async function update(req, res) {
+  try {
+    const job = await Job.findByIdAndUpdate(
+      req.params.jobId,
+      req.body,
+      { new: true }
+    )
+    res.status(200).json(job)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
 export { 
   create,
   show,
+  update
 }
