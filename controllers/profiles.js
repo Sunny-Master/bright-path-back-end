@@ -5,9 +5,20 @@ async function index(req, res) {
   try {
     const profiles = await Profile.find({})
     res.json(profiles)
-  } catch (err) {
-    console.log(err)
-    res.status(500).json(err)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
+async function show(req, res) {
+  try {
+    const profile = await Profile.findById(req.user.profile)
+    .populate('jobs')
+    res.status(200).json(profile)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
   }
 }
 
@@ -24,10 +35,10 @@ async function addPhoto(req, res) {
     
     await profile.save()
     res.status(201).json(profile.photo)
-  } catch (err) {
-    console.log(err)
-    res.status(500).json(err)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
   }
 }
 
-export { index, addPhoto }
+export { index, addPhoto, show }
