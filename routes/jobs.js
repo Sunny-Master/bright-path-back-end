@@ -18,4 +18,7 @@ router.post('/', checkAuth, jobsCtrl.create)
 //PUT routes
 router.put('/:jobId', checkAuth, jobsCtrl.update)
 
+//Delete routes
+router.delete('/:jobId', checkAuth, jobsCtrl.delete)
+
 export { router }
