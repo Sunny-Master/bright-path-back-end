@@ -67,10 +67,27 @@ async function createTask(req, res) {
   }
 }
 
+async function updateTask(req, res) {
+  try {
+    const job = await Job.findById(req.params.jobId)
+    const task = job.tasks.id(req.body._id)
+    task.set(req.body)
+    await job.save()
+    res.status(200).json(job)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
 export { 
+  //job controller functions
   create,
   show,
   update,
   deleteJob as delete,
-  createTask
+
+  // job-task controller functions
+  createTask,
+  updateTask
 }

@@ -18,6 +18,7 @@ router.post('/:jobId/tasks', checkAuth, jobsCtrl.createTask)
 
 //PUT routes
 router.put('/:jobId', checkAuth, jobsCtrl.update)
+router.put('/:jobId/tasks', checkAuth, jobsCtrl.updateTask)
 
 //Delete routes
 router.delete('/:jobId', checkAuth, jobsCtrl.delete)
