@@ -54,9 +54,23 @@ async function deleteJob(req, res) {
   }
 }
 
+async function createTask(req, res) {
+  try {
+    const job = await Job.findById(req.params.jobId)
+    job.tasks.push(req.body)
+    await job.save()
+    const newTask = job.tasks.at(-1)
+    res.status(201).json(newTask)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
 export { 
   create,
   show,
   update,
-  deleteJob as delete
+  deleteJob as delete,
+  createTask
 }

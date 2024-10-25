@@ -14,6 +14,7 @@ router.get('/:jobId', checkAuth, jobsCtrl.show)
 
 //POST routes
 router.post('/', checkAuth, jobsCtrl.create)
+router.post('/:jobId/tasks', checkAuth, jobsCtrl.createTask)
 
 //PUT routes
 router.put('/:jobId', checkAuth, jobsCtrl.update)
