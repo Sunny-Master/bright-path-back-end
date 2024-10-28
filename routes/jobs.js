@@ -10,6 +10,7 @@ const router = Router()
 router.use(decodeUserFromToken)
 
 //GET routes
+router.get('/', checkAuth, jobsCtrl.index)
 router.get('/:jobId', checkAuth, jobsCtrl.show)
 
 //POST routes

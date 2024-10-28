@@ -17,6 +17,16 @@ async function create(req, res) {
   }
 }
 
+async function index(req, res){
+  try {
+    const jobs = await Job.find({candidate: req.user.profile}).sort({ updatedAt: 'desc'})
+    res.status(200).json(jobs)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
 async function show(req, res) {
   try {
     const job = await Job.findById(req.params.jobId)
@@ -83,6 +93,7 @@ async function updateTask(req, res) {
 export { 
   //job controller functions
   create,
+  index,
   show,
   update,
   deleteJob as delete,
